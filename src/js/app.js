@@ -1,11 +1,24 @@
-// TODO: write code here
+import image from "../img/goblin.png";
 
-// comment this to pass build
-const unusedVariable = "variable";
+document.addEventListener("DOMContentLoaded", () => {
+  const box = document.querySelector(".box");
+  const board = [];
+  const goblin = document.createElement("img");
+  goblin.src = image;
 
-// for demonstration purpose only
-export default function demo(value) {
-  return `Demo: ${value}`;
-}
+  for (let i = 0; i < 16; i++) {
+    let div = document.createElement("div");
+    box.append(div);
+    board.push(div);
+  }
+  
+  let currentBox = 0;
 
-console.log("app.js included");
+  function moveGoblin() {
+    board[currentBox].innerHTML = '';
+
+    currentBox = Math.floor(Math.random() * board.length);
+    board[currentBox].append(goblin);
+  }
+  setInterval(moveGoblin, 1000);
+});
